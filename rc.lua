@@ -14,13 +14,70 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local keys = require('config.keys')
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- -- local gKeys = require("configuration.keys.global")
+--     ▄▄                                            ▄     ▄ ▄    ▄
+--     ██  ▄     ▄  ▄▄▄    ▄▄▄    ▄▄▄   ▄▄▄▄▄   ▄▄▄  █  █  █ ██  ██
+--    █  █ ▀▄ ▄ ▄▀ █▀  █  █   ▀  █▀ ▀█  █ █ █  █▀  █ ▀ █▀█ █ █ ██ █
+--    █▄▄█  █▄█▄█  █▀▀▀▀   ▀▀▀▄  █   █  █ █ █  █▀▀▀▀  ██ ██▀ █ ▀▀ █
+--   █    █  █ █   ▀█▄▄▀  ▀▄▄▄▀  ▀█▄█▀  █ █ █  ▀█▄▄▀  █   █  █    █
+
+-- Banner generated using `toilet -f mono9 AwesomeWM"
+
+local gears = require('gears')
+local awful = require('awful')
+local beautiful = require('beautiful')
+
+require('awful.autofocus')
+
+--  ========================================
+-- 			       Theme
+--	     	Load the Aesthetics
+--  ========================================
+-- beautiful.init(require('theme'))
+
+--  ========================================
+-- 			  	  Layouts
+--	     	   Load the Panels
+--  ========================================
+
+-- require('layout')
+
+--  ========================================
+-- 			      Modules
+--	        Load all the modules
+--  ========================================
+
+-- require('module.notifications')
+-- require('module.auto-start')
+-- require('module.decorate-client')
+-- -- require('module.backdrop')
+-- require('module.exit-screen')
+-- require('module.quake-terminal')
+-- require('module.titlebar')
+-- require('module.menu')
+-- require('module.volume-osd')
+-- require('module.brightness-osd')
+-- require('module.dynamic-wallpaper')
+-- require('module.battery-notifier')
+-- require('module.lockscreen')
+
+--  ========================================
+-- 				Configuration
+--	     	Load your prefrences
+--  ========================================
+
+-- require('configuration.client')
+-- require('configuration.tags')
+root.keys(require('config.keys.global'))
 
 
--- Setup all configurations
-local globalKeys = (require('configuration.keys.global'))
+
+
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -231,7 +288,6 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
--- {{{ Key bindings
 
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
@@ -248,7 +304,7 @@ clientbuttons = gears.table.join(
 )
 
 -- Set keys
-root.keys(globalKeys)
+-- root.keys(require("configuration.keys.global"))
 -- }}}
 
 -- {{{ Rules
