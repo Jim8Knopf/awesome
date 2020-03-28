@@ -37,7 +37,31 @@ require("awful.hotkeys_popup.keys")
 -- 			       Theme
 --	     	Load the Aesthetics
 --  ========================================
-beautiful.init(require('themes.xresources.theme'))
+
+local themes = {
+  "blackburn",        --  1
+  "copland",          --  2
+  "default",          --  3
+  "dremora",          --  4
+  "gtk",              --  5
+  "holo",             --  6
+  "material-CTT",     --  7
+  "multicolor",       --  8
+  "powerarrow",       --  9
+  "powerarrow-dark",  -- 10
+  "rainbow",          -- 11
+  "sky",              -- 12
+  "steamburn",        -- 13
+  "vertex",           -- 14
+  "xresources",       -- 15
+  "zenburn"           -- 16
+}
+
+local chosen_theme = themes[10]
+
+beautiful.init(require(string.format("themes.%s.theme", chosen_theme)))
+
+-- beautiful.init(require('themes.multicolor.theme'))
 
 --  ========================================
 -- 			  	  Layouts
