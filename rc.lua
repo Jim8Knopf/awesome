@@ -57,7 +57,7 @@ local themes = {
   "zenburn"           -- 16
 }
 
-local chosen_theme = themes[10]
+local chosen_theme = themes[8]
 
 beautiful.init(require(string.format("themes.%s.theme", chosen_theme)))
 
