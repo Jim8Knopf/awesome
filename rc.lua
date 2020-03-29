@@ -57,11 +57,11 @@ local themes = {
   "zenburn"           -- 16
 }
 
-local chosen_theme = themes[8]
-
-beautiful.init(require(string.format("themes.%s.theme", chosen_theme)))
-
--- beautiful.init(require('themes.multicolor.theme'))
+local chosen_theme = themes[1]
+-- %s is a variable for the next parameter. 
+-- in this case %s wil be replaced with the variable chosen_them
+-- the hole block will convert to a string.
+beautiful.init(require(string.format("themes.colorTheme.%s.theme", chosen_theme)))
 
 --  ========================================
 -- 			  	  Layouts
@@ -95,7 +95,7 @@ beautiful.init(require(string.format("themes.%s.theme", chosen_theme)))
 --  ========================================
 
 -- require('configuration.client')
--- require('configuration.tags')
+require('config.tags')
 root.keys(require('config.keys.global'))
 
 
@@ -144,25 +144,31 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 -- modkey = "Mod4"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-}
+-- -- Table of layouts to cover with awful.layout.inc, order matters.
+-- awful.layout.layouts = {
+--   awful.layout.suit.floating,
+--   awful.layout.suit.tile,
+--   awful.layout.suit.tile.left,
+--   awful.layout.suit.tile.bottom,
+--   awful.layout.suit.tile.top,
+--   awful.layout.suit.fair,
+--   awful.layout.suit.fair.horizontal,
+--   awful.layout.suit.spiral,
+--   awful.layout.suit.spiral.dwindle,
+--   awful.layout.suit.max,
+--   awful.layout.suit.max.fullscreen,
+--   awful.layout.suit.magnifier,
+--   awful.layout.suit.corner.nw,
+--   awful.layout.suit.corner.ne,
+--   awful.layout.suit.corner.sw,
+--   awful.layout.suit.corner.se,
+--   --lain.layout.cascade,
+--   --lain.layout.cascade.tile,
+--   --lain.layout.centerwork,
+--   --lain.layout.centerwork.horizontal,
+--   --lain.layout.termfair,
+--   --lain.layout.termfair.center,
+-- }
 -- }}}
 
 -- {{{ Menu
