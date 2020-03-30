@@ -12,7 +12,6 @@ local vid_widget =
 	wibox.widget {
 	{
 		id = 'icon',
-		image = widget_icon_dir .. 'folder-videos' .. '.svg',
 		widget = wibox.widget.imagebox,
 		resize = true
 	},

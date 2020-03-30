@@ -390,6 +390,9 @@ local globalKeys = awful.util.table.join(
         function()
             local focused = awful.screen.focused()
 
+            if focused.left_panel then
+                focused.left_panel:HideDashboard()
+            end
             if focused.right_panel then
                 focused.right_panel:HideDashboard()
             end
@@ -398,10 +401,40 @@ local globalKeys = awful.util.table.join(
         {description = "open application drawer", group = 'launcher'}
     ),
     awful.key(
+        {modkey},
+        'r',
+        function()
+            local focused = awful.screen.focused()
+
+            if focused.right_panel and focused.right_panel.visible then
+                focused.right_panel.visible = false
+            end
+            screen.primary.left_panel:toggle()
+        end,
+        {description = 'open sidebar', group = 'launcher'}
+    ),
+    awful.key(
+        {modkey, 'Shift'},
+        'r',
+        function()
+            local focused = awful.screen.focused()
+
+            if focused.right_panel and focused.right_panel.visible then
+                focused.right_panel.visible = false
+            end
+            screen.primary.left_panel:toggle(true)
+        end,
+        {description = 'open sidebar and web search', group = 'launcher'}
+    ),
+    awful.key(
         {modkey}, 
         'F2',
         function()
             local focused = awful.screen.focused()
+
+            if focused.left_panel and focused.left_panel.opened then
+                focused.left_panel:toggle()
+            end
 
             if focused.right_panel then
                 if _G.right_panel_mode == 'today_mode' or not focused.right_panel.visible then
@@ -414,7 +447,7 @@ local globalKeys = awful.util.table.join(
                 _G.right_panel_mode = 'today_mode'
             end
         end,
-        {description = "open today panel", group = 'launcher'}
+        {description = "open notification center", group = 'launcher'}
     ),
     awful.key(
         {modkey}, 
@@ -422,18 +455,22 @@ local globalKeys = awful.util.table.join(
         function()
             local focused = awful.screen.focused()
 
+            if focused.left_panel and focused.left_panel.opened then
+                focused.left_panel:toggle()
+            end
+
             if focused.right_panel then
-                if _G.right_panel_mode == 'settings_mode' or not focused.right_panel.visible then
+                if _G.right_panel_mode == 'notif_mode' or not focused.right_panel.visible then
                     focused.right_panel:toggle()
-                    switch_rdb_pane('settings_mode')
+                    switch_rdb_pane('notif_mode')
                 else
-                    switch_rdb_pane('settings_mode')
+                    switch_rdb_pane('notif_mode')
                 end
 
-                _G.right_panel_mode = 'settings_mode'
+                _G.right_panel_mode = 'notif_mode'
             end
         end,
-        {description = "open settings panel", group = 'launcher'}
+        {description = "open today pane", group = 'launcher'}
     )
 )
 

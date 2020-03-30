@@ -19,7 +19,7 @@ local return_button = function()
 	local widget = wibox.widget {
 		{
 			id = 'icon',
-			image = icons.menu,
+			image = icons.search,
 			widget = wibox.widget.imagebox,
 			resize = true
 		},
@@ -29,7 +29,7 @@ local return_button = function()
 	local widget_button = wibox.widget {
 		{
 			widget,
-			margins = dpi(10),
+			margins = dpi(7),
 			widget = wibox.container.margin
 		},
 		widget = clickable_container

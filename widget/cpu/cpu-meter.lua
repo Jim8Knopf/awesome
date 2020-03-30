@@ -10,15 +10,8 @@ local dpi = beautiful.xresources.apply_dpi
 local total_prev = 0
 local idle_prev = 0
 
-local bar_name = wibox.widget {
-	text = 'CPU',
-	font = 'SFNS Pro Text Bold 10',
-	align = 'center',
-	valign = 'center',
-	widget = wibox.widget.textbox
-}
-
 local slider = wibox.widget {
+	nil,
 	{
 		id 				 = 'cpu_usage',
 		max_value     	 = 100,
@@ -29,10 +22,9 @@ local slider = wibox.widget {
 		shape 			 = gears.shape.rounded_rect,
 		widget        	 = wibox.widget.progressbar
 	},
-    forced_height = dpi(270),
-    forced_width  = dpi(55),
-    direction     = 'east',
-    layout        = wibox.container.rotate
+	nil,
+	expand = 'none',
+	layout = wibox.layout.align.vertical
 }
 
 watch(
@@ -48,7 +40,7 @@ watch(
 		local diff_total = total - total_prev
 		local diff_usage = (1000 * (diff_total - diff_idle) / diff_total + 5) / 10
 
-		slider.cpu_usage:set_value(tonumber(diff_usage))
+		slider.cpu_usage:set_value(diff_usage)
 
 		total_prev = total
 		idle_prev = idle
@@ -57,12 +49,26 @@ watch(
 )
 
 local cpu_meter = wibox.widget {
-	layout = wibox.layout.fixed.vertical,
-	expand = 'none',
-	spacing = dpi(8),
-	slider,
-	nil,
-	bar_name
+	{
+		{
+			{
+				image = icons.chart,
+				resize = true,
+				widget = wibox.widget.imagebox
+			},
+			top = dpi(12),
+			bottom = dpi(12),
+			widget = wibox.container.margin
+		},
+		slider,
+		spacing = dpi(24),
+		layout = wibox.layout.fixed.horizontal
+
+	},
+	left = dpi(24),
+	right = dpi(24),
+	forced_height = dpi(48),
+	widget = wibox.container.margin
 }
 
 return cpu_meter

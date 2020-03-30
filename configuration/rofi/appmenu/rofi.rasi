@@ -6,7 +6,7 @@ configuration {
     threads:                        0;
     scroll-method:                  0;
     disable-history:                false;
-    fullscreen:                     true;
+    monitor:                        "primary";
 }
 
 * {
@@ -42,7 +42,7 @@ inputbar {
     text-color:                     @foreground;
     expand:                         false;
     border-radius:                  6px;
-    margin:                         0px 430px 0px 430px;
+    margin:                         0px 405px 0px 405px;
     padding:                        10px 10px 10px 10px;
     position:                       north;
 }
@@ -78,7 +78,7 @@ mainbox {
     background-color:               @background-color;
     children:                       [ inputbar, listview ];
     spacing:                        25px;
-    padding:                        70px 135px 55px 135px;
+    padding:                        45px 135px 45px 135px;
 }
 
 element {

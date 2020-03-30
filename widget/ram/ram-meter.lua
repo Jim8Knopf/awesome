@@ -7,15 +7,8 @@ local icons = require('theme.icons')
 
 local dpi = beautiful.xresources.apply_dpi
 
-local bar_name = wibox.widget {
-	text = 'RAM',
-	font = 'SFNS Pro Text Bold 10',
-	align = 'center',
-	valign = 'center',
-	widget = wibox.widget.textbox
-}
-
 local slider = wibox.widget {
+	nil,
 	{
 		id 				 = 'ram_usage',
 		max_value     	 = 100,
@@ -26,12 +19,10 @@ local slider = wibox.widget {
 		shape 			 = gears.shape.rounded_rect,
 		widget        	 = wibox.widget.progressbar
 	},
-    forced_height = dpi(270),
-    forced_width  = dpi(55),
-    direction     = 'east',
-    layout        = wibox.container.rotate
+	nil,
+	expand = 'none',
+	layout = wibox.layout.align.vertical
 }
-
 
 watch(
 	'bash -c "free | grep -z Mem.*Swap.*"',
@@ -45,12 +36,26 @@ watch(
 )
 
 local ram_meter = wibox.widget {
-	layout = wibox.layout.fixed.vertical,
-	expand = 'none',
-	spacing = dpi(8),
-	slider,
-	nil,
-	bar_name
+	{
+		{
+			{
+				image = icons.memory,
+				resize = true,
+				widget = wibox.widget.imagebox
+			},
+			top = dpi(12),
+			bottom = dpi(12),
+			widget = wibox.container.margin
+		},
+		slider,
+		spacing = dpi(24),
+		layout = wibox.layout.fixed.horizontal
+
+	},
+	left = dpi(24),
+	right = dpi(24),
+	forced_height = dpi(48),
+	widget = wibox.container.margin
 }
 
 return ram_meter

@@ -5,15 +5,14 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local separator =  wibox.widget {
-	orientation = 'vertical',
+	orientation = 'horizontal',
 	forced_height = dpi(1),
-	forced_width = dpi(1),
 	span_ratio = 0.55,
 	widget = wibox.widget.separator
 }
 
 return wibox.widget {
-	layout = wibox.layout.align.horizontal,
+	layout = wibox.layout.align.vertical,
   	{
 		separator,
 		require("widget.xdg-folders.home"),
@@ -22,6 +21,7 @@ return wibox.widget {
 		-- require("widget.xdg-folders.pictures"),
 		-- require("widget.xdg-folders.videos"),
 		separator,
-		layout = wibox.layout.fixed.horizontal,
+		require("widget.xdg-folders.trash"),
+		layout = wibox.layout.fixed.vertical,
   	},
 }

@@ -130,7 +130,7 @@ local awesome_overrides = function(theme)
 
 	theme.groups_title_bg = "#ffffff" .. "15"
 	theme.groups_bg = "#ffffff" .. "10"
-	theme.groups_radius = dpi(12)
+	theme.groups_radius = dpi(9)
 
 	-- Client Decorations
 

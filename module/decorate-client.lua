@@ -69,8 +69,6 @@ function clientCallback(client)
 	end
 end
 
-
-
 function tagCallback(tag)
 	if not changesOnScreenCalled then
 		if tag.screen then
