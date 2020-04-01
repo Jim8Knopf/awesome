@@ -52,7 +52,7 @@ local globalKeys =
     {description = 'show main menu', group = 'awesome'}
   ),
   awful.key(
-    {altkey},
+    {altkey}, 
     'space',
     function()
       _G.screen.primary.left_panel:toggle(true)
