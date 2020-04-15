@@ -8,6 +8,8 @@ local apps = require('config.apps')
 -- Key bindings
 local globalKeys = awful.util.table.join(
     -- keybindings
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    {description="show help", group="awesome"}),
     require("config.keys.programs"),
     require("config.keys.general")
 )

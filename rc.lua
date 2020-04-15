@@ -201,7 +201,7 @@ awful.mouse.append_global_mousebindings({
 -- }}}
 
 -- {{{ Key bindings
-root.keys(require("config.keys.init"))
+root.keys(require("config.keys.global"))
 
 -- Tags related keybindings
 awful.keyboard.append_global_keybindings({
@@ -215,6 +215,11 @@ awful.keyboard.append_global_keybindings({
 
 -- Focus related keybindings
 awful.keyboard.append_global_keybindings({
+    -- just for testing
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    {description = "reload awesome", group = group}),
+
+    -- hear it starts
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
