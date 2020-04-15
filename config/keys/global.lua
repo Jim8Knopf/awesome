@@ -9,9 +9,9 @@ local apps = require('config.apps')
 local globalKeys = awful.util.table.join(
     -- keybindings
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-    {description="show help", group="awesome"}),
-    require("config.keys.programs"),
-    require("config.keys.general")
+    {description="show help", group="awesome"})
+    -- require("config.keys.programs"),
+    -- require("config.keys.general")
 )
 
 -- -- Bind all key numbers to tags.
