@@ -21,9 +21,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local apps = require('config.apps')
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- {{{ Key bindings
+awful.keyboard.append_global_keybindings(require("config.keys.global"))
 -- }}}
+
 
 
 
@@ -43,26 +44,14 @@ end)
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
--- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
-
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "manual", apps.default.terminal .. " -e man awesome" },
+   { "edit config", apps.default.editor .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
@@ -83,11 +72,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        awful.layout.suit.floating,
+        awful.layout.suit.corner.nw,
         awful.layout.suit.tile,
         awful.layout.suit.tile.left,
         awful.layout.suit.tile.bottom,
         awful.layout.suit.tile.top,
+        awful.layout.suit.floating,
         awful.layout.suit.fair,
         awful.layout.suit.fair.horizontal,
         awful.layout.suit.spiral,
@@ -95,7 +85,6 @@ tag.connect_signal("request::default_layouts", function()
         awful.layout.suit.max,
         awful.layout.suit.max.fullscreen,
         awful.layout.suit.magnifier,
-        awful.layout.suit.corner.nw,
     })
 end)
 -- }}}
