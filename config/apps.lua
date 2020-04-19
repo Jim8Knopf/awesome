@@ -11,14 +11,14 @@ return {
     terminal = 'terminator',
     rofi = rofi_command,
     quake = 'terminator',
-    screenshot = '~/.config/awesome/configuration/utils/screenshot -m',
-    region_screenshot = '~/.config/awesome/configuration/utils/screenshot -r',
-    delayed_screenshot = 'sleep 10 ; ~/.config/awesome/configuration/utils/screenshot -r',
+    screenshot = '~/.config/awesome/config/utils/screenshot -m',
+    region_screenshot = '~/.config/awesome/config/utils/screenshot -r',
+    delayed_screenshot = 'sleep 10 ; ~/.config/awesome/config/utils/screenshot -r',
     
     -- Editing these also edits the default program
     -- associated with each tag/workspace
     browser = 'firefox',
-    editor = 'code',
+    editor = os.getenv("EDITOR") or "code",
     social = 'telegram-desktop',
     game = 'steam',
     files = 'thunar',
