@@ -26,6 +26,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- }}}
 
 
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -41,36 +43,48 @@ end)
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+
+-- This is used later as the default terminal and editor to run.
+terminal = "xterm"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+
+-- Default modkey.
+-- Usually, Mod4 is the key with a logo between Control and Alt.
+-- If you do not like this or do not have such a key,
+-- I suggest you to remap Mod4 to another key using xmodmap or other tools.
+-- However, you can use another modifier like Mod1, but it may interact with others.
+modkey = "Mod4"
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", apps.default.terminal .. " -e man awesome" },
-    { "edit config", apps.default.editor .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
+   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "manual", terminal .. " -e man awesome" },
+   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "restart", awesome.restart },
+   { "quit", function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-{ "open terminal", apps.default.terminal }
-}
-})
+                                    { "open terminal", terminal }
+                                  }
+                        })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-menu = mymainmenu })
+                                     menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = apps.default.terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Tag
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        awful.layout.suit.tile,
         awful.layout.suit.floating,
+        awful.layout.suit.tile,
         awful.layout.suit.tile.left,
         awful.layout.suit.tile.bottom,
         awful.layout.suit.tile.top,
@@ -88,6 +102,8 @@ end)
 
 -- {{{ Wibar
 
+-- Keyboard map indicator and switcher
+mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -191,27 +207,6 @@ awful.mouse.append_global_mousebindings({
 })
 -- }}}
 
--- {{{ Key bindings
-awful.keyboard.append_global_keybindings(require("config.keys.global"))
-
-
-client.connect_signal("request::default_mousebindings", function()
-    awful.mouse.append_client_mousebindings({
-        awful.button({ }, 1, function (c)
-            c:activate { context = "mouse_click" }
-        end),
-        awful.button({ modkey }, 1, function (c)
-            c:activate { context = "mouse_click", action = "mouse_move"  }
-        end),
-        awful.button({ modkey }, 3, function (c)
-            c:activate { context = "mouse_click", action = "mouse_resize"}
-        end),
-    })
-end)
-
-
--- }}}
-
 -- {{{ Rules
 -- Rules to apply to new clients.
 ruled.client.connect_signal("request::rules", function()
@@ -254,7 +249,7 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         id         = "titlebars",
         rule_any   = { type = { "normal", "dialog" } },
-        properties = { titlebars_enabled = false      }
+        properties = { titlebars_enabled = true      }
     }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -328,8 +323,6 @@ end)
 client.connect_signal("mouse::enter", function(c)
     c:activate { context = "mouse_enter", raise = false }
 end)
-
-
 
 -- Keyboard map indicator and changer
 awful.spawn.with_shell("setxkbmap -layout de")

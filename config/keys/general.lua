@@ -134,6 +134,14 @@ local general = awful.util.table.join({
             c:raise()
         end ,
         {description = "(un)maximize horizontally", group = group}),
+        awful.key(
+          {modkey},
+          'q',
+          function(c)
+            c:kill()
+          end,
+          {description = 'close', group = 'client'}
+        )
 })
 
 return general
