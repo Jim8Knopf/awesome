@@ -27,7 +27,7 @@ local general = awful.util.table.join({
         }
     end,
     {description = "lua execute prompt", group = group}),
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(apps.default.terminal) end,
     {description = "open a terminal", group = group}),
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
     {description = "run prompt", group = group}),
@@ -92,56 +92,22 @@ local general = awful.util.table.join({
                 end
             end
         end,
-    },
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
+    }, 
+    awful.key(
+        {modkey},
+        't',
+        function()
+            awful.spawn(
+                awful.screen.focused().selected_tag.defaultApp,
+                {
+                    tag = _G.mouse.screen.selected_tag,
+                    placement = awful.placement.bottom_right
+                }
+            )
         end,
-        {description = "toggle fullscreen", group = group}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-            {description = "close", group = group}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
-            {description = "toggle floating", group = group}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-            {description = "move to master", group = group}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-            {description = "move to screen", group = group}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-            {description = "toggle keep on top", group = group}),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = group}),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = group}),
-    awful.key({ modkey, "Control" }, "m",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end ,
-        {description = "(un)maximize vertically", group = group}),
-    awful.key({ modkey, "Shift"   }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end ,
-        {description = "(un)maximize horizontally", group = group}),
-        awful.key(
-          {modkey},
-          'q',
-          function(c)
-            c:kill()
-          end,
-          {description = 'close', group = 'client'}
-        )
+        {description = 'open default program for tag/workspace', group = 'tag'}
+    ),
+    
 })
 
 return general

@@ -21,6 +21,14 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local apps = require('config.apps')
+require('config.client')
+tags = require('config.tags')
+--  ========================================
+-- 			  	  Layouts
+--	     	   Load the Panels
+--  ========================================
+
+-- require('layout')
 -- {{{ Key bindings
 awful.keyboard.append_global_keybindings(require("config.keys.global"))
 -- }}}
@@ -57,36 +65,12 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+    { "open terminal", apps.default.terminal }}})
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
-
--- {{{ Tag
--- Table of layouts to cover with awful.layout.inc, order matters.
-tag.connect_signal("request::default_layouts", function()
-    awful.layout.append_default_layouts({
-        awful.layout.suit.corner.nw,
-        awful.layout.suit.tile,
-        awful.layout.suit.tile.left,
-        awful.layout.suit.tile.bottom,
-        awful.layout.suit.tile.top,
-        awful.layout.suit.floating,
-        awful.layout.suit.fair,
-        awful.layout.suit.fair.horizontal,
-        awful.layout.suit.spiral,
-        awful.layout.suit.spiral.dwindle,
-        awful.layout.suit.max,
-        awful.layout.suit.max.fullscreen,
-        awful.layout.suit.magnifier,
-    })
-end)
+menubar.utils.terminal = apps.default.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
@@ -111,7 +95,7 @@ end)
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -196,60 +180,6 @@ awful.mouse.append_global_mousebindings({
 })
 -- }}}
 
--- {{{ Rules
--- Rules to apply to new clients.
-ruled.client.connect_signal("request::rules", function()
-    -- All clients will match this rule.
-    ruled.client.append_rule {
-        id         = "global",
-        rule       = { },
-        properties = {
-            focus     = awful.client.focus.filter,
-            raise     = true,
-            screen    = awful.screen.preferred,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
-        }
-    }
-
-    -- Floating clients.
-    ruled.client.append_rule {
-        id       = "floating",
-        rule_any = {
-            instance = { "copyq", "pinentry" },
-            class    = {
-                "Arandr", "Blueman-manager", "Gpick", "Kruler", "Sxiv",
-                "Tor Browser", "Wpa_gui", "veromix", "xtightvncviewer"
-            },
-            -- Note that the name property shown in xprop might be set slightly after creation of the client
-            -- and the name shown there might not match defined rules here.
-            name    = {
-                "Event Tester",  -- xev.
-            },
-            role    = {
-                "AlarmWindow",    -- Thunderbird's calendar.
-                "ConfigManager",  -- Thunderbird's about:config.
-                "pop-up",         -- e.g. Google Chrome's (detached) Developer Tools.
-            }
-        },
-        properties = { floating = true }
-    }
-
-    -- Add titlebars to normal clients and dialogs
-    ruled.client.append_rule {
-        id         = "titlebars",
-        rule_any   = { type = { "normal", "dialog" } },
-        properties = { titlebars_enabled = true      }
-    }
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- ruled.client.append_rule {
-    --     rule       = { class = "Firefox"     },
-    --     properties = { screen = 1, tag = "2" }
-    -- }
-end)
-
--- }}}
-
 -- {{{ Titlebars
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
@@ -288,9 +218,9 @@ client.connect_signal("request::titlebars", function(c)
         layout = wibox.layout.align.horizontal
     }
 end)
+-- }}}
 
 -- {{{ Notifications
-
 ruled.notification.connect_signal('request::rules', function()
     -- All notifications will match this rule.
     ruled.notification.append_rule {
@@ -301,11 +231,9 @@ ruled.notification.connect_signal('request::rules', function()
         }
     }
 end)
-
 naughty.connect_signal("request::display", function(n)
     naughty.layout.box { notification = n }
 end)
-
 -- }}}
 
 -- Enable sloppy focus, so that focus follows mouse.

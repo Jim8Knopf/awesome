@@ -9,7 +9,7 @@ local group = "programs"
 local programs = awful.util.table.join({
     -- standard programs
     awful.key(
-        {modkey}, 'e',
+        {modkey}, 'v',
         function()
             awful.util.spawn_with_shell(apps.default.editor)
         end,
@@ -23,7 +23,7 @@ local programs = awful.util.table.join({
         {description = 'Opens the browser(firefox)', group = group}
     ),
     awful.key(
-        {modkey}, 'f',
+        {modkey}, 'e',
         function()
             awful.util.spawn_with_shell(apps.default.files)
         end,

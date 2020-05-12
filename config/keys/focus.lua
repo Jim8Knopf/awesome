@@ -43,12 +43,6 @@ function ()
 end,
 {description = "restore minimized", group = group}),
 
-awful.key(
-    {modkey},
-    'o',
-    awful.client.movetoscreen,
-    {description = 'move window to next screen', group = group}
-),
 })
 
 return focus
