@@ -10,20 +10,17 @@ return {
   default = {
     terminal = 'terminator',
     rofi = rofi_command,
+    lock = 'i3lock-fancy',
     quake = 'terminator',
-    screenshot = '~/.config/awesome/config/utils/screenshot -m',
-    region_screenshot = '~/.config/awesome/config/utils/screenshot -r',
-    delayed_screenshot = 'sleep 10 ; ~/.config/awesome/config/utils/screenshot -r',
-    
-    -- Editing these also edits the default program
-    -- associated with each tag/workspace
-    browser = 'firefox',
-    editor = os.getenv("EDITOR") or "code",
-    social = 'telegram-desktop',
-    game = 'steam',
-    files = 'thunar',
-    music = 'spotify',
-    netflix = '~/.config/awesome/configuration/utils/netflix -r'
+    screenshot = 'flameshot screen -p ~/Pictures',
+    region_screenshot = 'flameshot gui -p ~/Pictures',
+    delayed_screenshot = 'flameshot screen -p ~/Pictures -d 5000',
+    browser = 'brave',
+    editor = 'code', -- gui text editor
+    social = 'discord',
+    game = rofi_command,
+    files = 'nautilus',
+    music = rofi_command 
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
@@ -32,13 +29,13 @@ return {
     'pa-applet', -- shows an audiocontrol applet in systray when installed.
     'blueberry-tray', -- Bluetooth tray icon
     'xfce4-power-manager', -- Power manager
-    'ibus-daemon --xim', -- Ibus daemon for keyboard
-    'scream -u -p 4011 -i virbr1', -- scream audio sink
-    'numlockx off', -- enable numlock
-    '/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
+    -- 'ibus-daemon --xim', -- Ibus daemon for keyboard
+    -- 'scream -u -p 4011 -i virbr1', -- scream audio sink
+    'numlockx on', -- enable numlock
+    -- '/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
     --KDE '/usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
     -- MATE'/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
-    'flameshot',
+    -- 'flameshot',
     --  'synology-drive -minimized',
     --  'steam -silent',
     --  'telegram-desktop',

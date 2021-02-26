@@ -9,7 +9,7 @@ local group = "hotkeys"
 
 -- Layout related keybindings
 
-local layout = awful.util.table.join({
+local layout = awful.util.table.join(
     
   -- Brightness
   awful.key(
@@ -76,7 +76,7 @@ local layout = awful.util.table.join({
       _G.exit_screen_show()
     end,
     {description = 'toggle mute', group = group}
-  ),
-})
+  )
+)
     
 return layout

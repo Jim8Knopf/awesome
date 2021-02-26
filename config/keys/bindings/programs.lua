@@ -6,7 +6,7 @@ local altkey = require('config.keys.mod').altKey
 local apps = require('config.apps')
 local group = "programs"
 -- Key bindings
-local programs = awful.util.table.join({
+local programs = awful.util.table.join(
     -- standard programs
     awful.key(
         {modkey}, 'v',
@@ -90,5 +90,5 @@ local programs = awful.util.table.join({
         end,
         {description = 'Opens screen manager', group = group}
     )
-})
+)
 return programs

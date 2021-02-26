@@ -9,7 +9,7 @@ local group = "focus"
 
 -- Layout related keybindings
 
-local layout = awful.util.table.join({
+local layout = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = group}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
@@ -31,7 +31,7 @@ local layout = awful.util.table.join({
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = group}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = group}),
-})
+              {description = "select previous", group = group})
+)
     
 return layout

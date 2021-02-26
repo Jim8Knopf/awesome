@@ -8,7 +8,7 @@ local apps = require('config.apps')
 local group = "focus"
 
 -- Focus related keybindings
-local focus = awful.util.table.join({
+local focus = awful.util.table.join(
     awful.key({ modkey,           }, "j",
     function ()
         awful.client.focus.byidx( 1)
@@ -41,8 +41,8 @@ function ()
         c:activate { raise = true, context = "key.unminimize" }
     end
 end,
-{description = "restore minimized", group = group}),
+{description = "restore minimized", group = group})
 
-})
+)
 
 return focus

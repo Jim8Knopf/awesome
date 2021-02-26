@@ -7,7 +7,7 @@ local altkey = require('config.keys.mod').altKey
 local apps = require('config.apps')
 local group = "awesome"
 -- Key bindings
-local general = awful.util.table.join({
+local general = awful.util.table.join(
     -- General Awesome keys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
     {description="show help", group="awesome"}),
@@ -114,8 +114,8 @@ local general = awful.util.table.join({
             )
         end,
         {description = 'open default program for tag/workspace', group = 'tag'}
-    ),
+    )
     
-})
+)
 
 return general
