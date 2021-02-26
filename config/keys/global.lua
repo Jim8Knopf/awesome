@@ -5,6 +5,7 @@ local hotkeys_popup = require('awful.hotkeys_popup').widget
 local modkey = require('config.keys.mod').modKey
 local altkey = require('config.keys.mod').altKey
 local apps = require('config.apps')
+
 general = require("config.keys.bindings.general")
 focus = require("config.keys.bindings.focus")
 hotkeyes = require("config.keys.bindings.hotkeys")
