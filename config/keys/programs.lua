@@ -75,6 +75,20 @@ local programs = awful.util.table.join({
             awful.util.spawn_with_shell("spotify")
         end,
         {description = 'Opens spotify', group = group}
+    ),
+    awful.key(
+        {modkey, altkey}, 'o',
+        function()
+            awful.util.spawn_with_shell("obs")
+        end,
+        {description = 'Opens obs', group = group}
+    ),
+    awful.key(
+        {altkey,'Control'}, 'd',
+        function()
+            awful.spawn.with_shell("arandr")
+        end,
+        {description = 'Opens screen manager', group = group}
     )
 })
 return programs

@@ -243,3 +243,5 @@ end)
 
 -- Keyboard map indicator and changer
 awful.spawn.with_shell("setxkbmap -layout de")
+awful.spawn.with_shell("antimicrox --tray")
+awful.spawn.with_shell("discord")

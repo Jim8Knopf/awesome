@@ -39,6 +39,14 @@ local general = awful.util.table.join({
               {description = "go back", group = group}),
     awful.key({ modkey }, "p", function() menubar.show() end, --doesn't work jet
     {description = "show the menubar", group = group}),
+
+    awful.key(
+      {modkey}, 'F2',
+      function()
+      awful.spawn("arandr")
+      end,
+      {description = 'Display settings', group = 'awesome'}),
+  
     awful.key {
         modifiers   = { modkey },
         keygroup    = "numrow",
