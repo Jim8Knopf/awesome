@@ -10,7 +10,7 @@ local group = group
 
 local dpi = require('beautiful').xresources.apply_dpi
 
-local clientKeys = awful.util.table.join(
+local clientKeys = gears.table.join(
 	
 	-- toggle fullscreen
 	awful.key(
@@ -33,6 +33,8 @@ local clientKeys = awful.util.table.join(
 		end,
 		{description = 'close', group = group}
 	),
+    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+              {description = "close", group = "client"}),
 	-- Default client focus
 	awful.key(
 		{modkey},

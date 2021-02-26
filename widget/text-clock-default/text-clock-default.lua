@@ -10,6 +10,8 @@ local wibox = require("wibox")
 local mytextclock = wibox.widget.textclock()
 
 
+--!!-- E: awesome: Value of 'foreground' attribute on <span> tag on line 1 could not be parsed; should be a color specification, not 'nil'
+
 
 
 -- Add a calendar (credits to kylekewley for the original code)
