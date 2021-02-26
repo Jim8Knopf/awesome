@@ -6,7 +6,7 @@ local wibox = require("wibox")
 local menu = require("widget.menu-default.menu-default")
 local HOME_DIR = os.getenv("HOME")
 local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widget/launcher-default/'
-local icon = WIDGET_DIR .. '/icons/archlinux-logo.svg'
+local icon = WIDGET_DIR .. '/icons/arch-lua.png'
 
  local mylauncher = awful.widget.launcher({ image = icon,
  menu = menu })

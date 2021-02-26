@@ -2,6 +2,7 @@
 local apps = require('config.apps')
 local widget = require("widget")
 require('module.auto-start')
+require('config.layouts')
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -22,7 +23,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 -- Set keys
-root.keys(require('config.keys.global'))
+require('config.client')
+require('config.tags')
+_G.root.keys(require('config.keys.global'))
+-- Reset wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal( "property::geometry", function(s) beautiful.wallpaper.maximized( beautiful.wallpaper, s, beautiful.wallpapers) end )
 -- }}}
 
 -- {{{ Error handling
@@ -54,25 +59,6 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-}
 -- }}}
 
 
@@ -83,43 +69,45 @@ menubar.utils.terminal = apps.default.terminal -- Set the terminal for applicati
 -- {{{ Wibar
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+    awful.button({ }, 1, function(t) t:view_only() end),
+    awful.button({ modkey }, 1, function(t)
+                              if client.focus then
+                                  client.focus:move_to_tag(t)
+                              end
+                          end),
+    awful.button({ }, 3, awful.tag.viewtoggle),
+    awful.button({ modkey }, 3, function(t)
+                              if client.focus then
+                                  client.focus:toggle_tag(t)
+                              end
+                          end),
+    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
+     awful.button({ }, 1, function (c)
+                              if c == client.focus then
+                                  c.minimized = true
+                              else
+                                  c:emit_signal(
+                                      "request::activate",
+                                      "tasklist",
+                                      {raise = true}
+                                  )
+                              end
+                          end),
+     awful.button({ }, 3, function()
+                              awful.menu.client_list({ theme = { width = 250 } })
+                          end),
+     awful.button({ }, 4, function ()
+                              awful.client.focus.byidx(1)
+                          end),
+     awful.button({ }, 5, function ()
+                              awful.client.focus.byidx(-1)
+                    end
+                )
+)
 
 local function set_wallpaper(s)
     -- Wallpaper

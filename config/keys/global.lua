@@ -1,5 +1,6 @@
 local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
+require('awful.autofocus')
 
 local modkey = require('config.keys.mod').modKey
 local altkey = require('config.keys.mod').altKey
@@ -48,14 +49,14 @@ local globalKeys =
     end,
     {description = 'Show main menu', group = 'awesome'}
   ),
-  awful.key(
-    {modkey, 'Shift'},
-    'r',
-    function()
-      awful.spawn('reboot')
-    end,
-    {description = 'Reboot Computer', group = 'awesome'}
-  ),
+  -- awful.key(
+  --   {modkey, 'Shift'},
+  --   'r',
+  --   function()
+  --     awful.spawn('reboot')
+  --   end,
+  --   {description = 'Reboot Computer', group = 'awesome'}
+  -- ),
   awful.key(
     {modkey, 'Shift'},
     's',
