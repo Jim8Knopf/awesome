@@ -5,4 +5,5 @@ return {
   menu = require("widget.menu-default.menu-default"),
   launcher = require("widget.launcher-default.launcher-default"),
   textClock = require("widget.text-clock-default.text-clock-default"),
+  layoutbox = require("widget.layoutbox-default.layoutbox-default"),
 }

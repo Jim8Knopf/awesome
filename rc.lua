@@ -110,6 +110,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
+    -- s.layoutbox = widget.layoutbox(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
         awful.button({ }, 1, function () awful.layout.inc( 1) end),
@@ -154,8 +155,9 @@ awful.screen.connect_for_each_screen(function(s)
             widget.keyboardLayout,
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            s.layoutbox,
             widget.textClock,
-            s.mylayoutbox,
+            -- s.mylayoutbox,
         },
     }
 end)

@@ -31,9 +31,10 @@ return {
     'xfce4-power-manager', -- Power manager
     -- 'ibus-daemon --xim', -- Ibus daemon for keyboard
     -- 'scream -u -p 4011 -i virbr1', -- scream audio sink
-    'numlockx on', -- enable numlock
+    'numlock on', -- enable numlock
     'feh --randomize --bg-fill ~/.wallpapers/*',
-    '/usr/bin/variety',
+    -- '/usr/bin/variety',    <-- mayby turn it on again
+
     -- '/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
     --KDE '/usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
     -- MATE'/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
@@ -43,6 +44,6 @@ return {
     --  'telegram-desktop',
     -- Add applications that need to be killed between reloads
     -- to avoid multipled instances, inside the awspawn script
-    '~/.config/awesome/configuration/awspawn' -- Spawn "dirty" apps that can linger between sessions
+    -- '~/.config/awesome/configuration/awspawn' -- Spawn "dirty" apps that can linger between sessions
   }
 }
