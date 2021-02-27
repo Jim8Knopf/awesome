@@ -4,6 +4,7 @@ local apps = require('config.apps')
 local widget = require("widget")
 
 require('config.layouts')
+require("config.client")
 require('module.auto-start')
 
 
@@ -104,7 +105,16 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    if s == screen[1] then
+        awful.tag.add("Second tag", {
+            icon = "/path/to/icon2.png",
+            layout = awful.layout.suit.max,
+            screen = s,
+        })
+        awful.tag({ "1", "2", "3", "5", "awmtt" }, s, awful.layout.layouts[1])
+    else
+        awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    end
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -170,65 +180,6 @@ root.buttons(gears.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
-require("config.client")
-
--- -- {{{ Rules
--- -- Rules to apply to new clients (through the "manage" signal).
--- awful.rules.rules = {
---     -- All clients will match this rule.
---     { rule = { },
---       properties = { border_width = beautiful.border_width,
---                      border_color = beautiful.border_normal,
---                      focus = awful.client.focus.filter,
---                      raise = true,
---                      keys = clientkeys,
---                      buttons = clientbuttons,
---                      screen = awful.screen.preferred,
---                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
---      }
---     },
-
---     -- Floating clients.
---     { rule_any = {
---         instance = {
---           "DTA",  -- Firefox addon DownThemAll.
---           "copyq",  -- Includes session name in class.
---           "pinentry",
---         },
---         class = {
---           "Arandr",
---           "Blueman-manager",
---           "Gpick",
---           "Kruler",
---           "MessageWin",  -- kalarm.
---           "Sxiv",
---           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
---           "Wpa_gui",
---           "veromix",
---           "xtightvncviewer"},
-
---         -- Note that the name property shown in xprop might be set slightly after creation of the client
---         -- and the name shown there might not match defined rules here.
---         name = {
---           "Event Tester",  -- xev.
---         },
---         role = {
---           "AlarmWindow",  -- Thunderbird's calendar.
---           "ConfigManager",  -- Thunderbird's about:config.
---           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
---         }
---       }, properties = { floating = true }},
-
---     -- Add titlebars to normal clients and dialogs
---     { rule_any = {type = { "normal", "dialog" }
---       }, properties = { titlebars_enabled = true }
---     },
-
---     -- Set Firefox to always map on the tag named "2" on screen 1.
---     { rule = { instance = "vlc" },
---       properties = { screen = 1, tag = "2" } },
--- }
--- -- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

@@ -89,6 +89,23 @@ local programs = awful.util.table.join(
             awful.spawn.with_shell("arandr")
         end,
         {description = 'Opens screen manager', group = group}
+    ),
+    -- System Monitor hotkey
+    awful.key(
+      {modkey},
+      'm',
+      function()
+        awful.util.spawn_with_shell('mate-system-monitor')
+      end
+    ),
+    -- Emoji Picker
+    awful.key(
+      {modkey},
+      'a',
+      function()
+        awful.util.spawn_with_shell('ibus emoji')
+      end,
+      {description = 'Open the ibus emoji picker to copy an emoji to your clipboard', group = 'hotkeys'}
     )
 )
 return programs
