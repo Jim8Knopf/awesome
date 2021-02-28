@@ -4,6 +4,8 @@ return {
   keyboardLayout = require("widget.keyboard-layout.keyboard-layout"),
   menu = require("widget.menu-default.menu-default"),
   launcher = require("widget.launcher-default.launcher-default"),
-  textClock = require("widget.text-clock-default.text-clock-default")
-  -- layoutbox = require("widget.layoutbox-default.layoutbox-default"),
+  textClock = require("widget.text-clock-default.text-clock-default"),
+  -- layoutbox = require("widget.layoutbox-default"),
+  taglist = require("widget.tag-list-default"),
+  tasklist = require("widget.task-list-default")
 }

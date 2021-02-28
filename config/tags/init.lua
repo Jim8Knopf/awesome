@@ -70,30 +70,11 @@ local tags = {
 		name = "w",
 	  type = 'social',
 	  defaultApp = 'discord',
-	  screen = 1
+	  screen = 1,
+	  layout = awful.layout.suit.corner.se
 	}
 }
 
--- -- {{{ Tag
--- -- Table of layouts to cover with awful.layout.inc, order matters.
--- tag.connect_signal("request::default_layouts", function()
---     awful.layout.append_default_layouts({
---         awful.layout.suit.tile,
---         awful.layout.suit.floating,
---         awful.layout.suit.tile.left,
---         awful.layout.suit.tile.bottom,
---         awful.layout.suit.tile.top,
---         awful.layout.suit.fair,
---         awful.layout.suit.fair.horizontal,
---         awful.layout.suit.spiral,
---         awful.layout.suit.spiral.dwindle,
---         awful.layout.suit.max,
---         awful.layout.suit.max.fullscreen,
---         awful.layout.suit.magnifier,
---         awful.layout.suit.corner.nw,
---     })
--- end)
--- }}}
 
 awful.screen.connect_for_each_screen(
   function(s)
@@ -104,7 +85,7 @@ awful.screen.connect_for_each_screen(
 			{
 			icon 				= tag.icon,
 			icon_only 			= false,
-			layout 				= awful.layout.suit.corner.nw,
+			layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
 			gap_single_client	= false,
 			gap 				= 4,
 			screen 				= s,
