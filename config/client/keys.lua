@@ -34,7 +34,7 @@ local clientKeys = gears.table.join(
 		{description = 'close', group = group}
 	),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
+              {description = "close", group = group}),
 	-- Default client focus
 	awful.key(
 		{modkey},

@@ -6,6 +6,8 @@ local widget = require("widget")
 require('config.layouts')
 require("config.client")
 require('module.auto-start')
+require("config.tags")
+-- require('layout')
 
 
 -- If LuaRocks is installed, make sure that packages installed through it are
@@ -104,17 +106,6 @@ local tasklist_buttons = gears.table.join(
 
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Each screen has its own tag table.
-    if s == screen[1] then
-        awful.tag.add("Second tag", {
-            icon = "/path/to/icon2.png",
-            layout = awful.layout.suit.max,
-            screen = s,
-        })
-        awful.tag({ "1", "2", "3", "5", "awmtt" }, s, awful.layout.layouts[1])
-    else
-        awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-    end
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

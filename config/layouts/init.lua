@@ -24,7 +24,7 @@ local awful = require('awful')
 -- theas ar the tiling layouts.
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.ne,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
