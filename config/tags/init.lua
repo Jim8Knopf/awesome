@@ -6,7 +6,7 @@ local beautiful = require('beautiful')
 
 local tags = {
 	{
-		-- icon = icons.terminal,
+		-- icon = '/home/jim/.config/awesome/widget/launcher-default/icons/gitlab-icon.svg',
 		name = "w",
 		type = 'terminal',
 		defaultApp = 'kitty',
@@ -40,24 +40,6 @@ local tags = {
 		defaultApp = 'vlc',
 		screen = 1
 	},
-	-- {
-	-- 	-- icon = icons.games,
-	-- 	type = 'game',
-	-- 	defaultApp = 'steam',
-	-- 	screen = 1
-	-- },
-	-- {
-	-- 	-- icon = icons.graphics,
-	-- 	type = 'art',
-	-- 	defaultApp = 'gimp-2.10',
-	-- 	screen = 1
-	-- },
-	-- {
-	-- 	icon = icons.sandbox,
-	-- 	type = 'virtualbox',
-	-- 	defaultApp = 'virtualbox',
-	-- 	screen = 1
-	-- },
 	{
 		-- icon = icons.development,
 		name = "w",
@@ -65,36 +47,87 @@ local tags = {
 		defaultApp = '',
 		screen = 1
 	},
+	--
+	-- Screan 2
+	--
 	{
 	--   icon = icons.social,
-		name = "w",
-	  type = 'social',
-	  defaultApp = 'discord',
-	  screen = 1,
-	  layout = awful.layout.suit.corner.se
+		name = 'discord',
+	  	type = 'discord',
+	  	defaultApp = 'discord',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'code',
+	  	type = 'code',
+	  	defaultApp = 'code',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'terminal',
+	  	type = 'terminal',
+	  	defaultApp = defaultApp.terminal,
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'annything',
+	  	type = 'annything',
+	  	defaultApp = 'rofi',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'signal-desktop',
+	  	type = 'signal-desktop',
+	  	defaultApp = 'signal-desktop',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'telegram-desktop',
+	  	type = 'telegram-desktop',
+	  	defaultApp = 'telegram-desktop',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
 	}
 }
 
 
 awful.screen.connect_for_each_screen(
   function(s)
-
+	-- if you have more screens, tan you need to add heare some trues.
+	-- if you know a beatherway pleas contact me
+	local selected = {true,true,true,true,true,true}
 	for i, tag in ipairs(tags) do
-		awful.tag.add(
-			tag.type, 
-			{
-			icon 				= tag.icon,
-			icon_only 			= false,
-			layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
-			gap_single_client	= false,
-			gap 				= 4,
-			screen 				= s,
-			defaultApp 			= tag.defaultApp,
-			selected 			= i == 1
-			}
-		)
-	end
-  end
+		-- checks if there are as many screens as I defined top in the tags. 
+		-- If not this tag will added to the last screen
+		local msc = (screen:count() >= tag.screen and tag.screen or screen:count())
+			if s == screen[msc] then
+				awful.tag.add(
+					tag.type, 
+					{
+					icon 				= tag.icon,
+					icon_only 			= (tag.icon and true or false),
+					layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
+					gap_single_client	= false,
+					gap 				= 4,
+					screen 				= msc,
+					defaultApp 			= tag.defaultApp,
+					selected 			= selected[msc]
+					}
+				)
+			end
+			selected[tag.screen] = false
+		end
+  	end
 )
 
 

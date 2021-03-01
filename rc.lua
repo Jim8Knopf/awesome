@@ -30,7 +30,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 -- Set keys
-root.keys(require('config.keys.global'))
+_G.root.keys(require('config.keys.global'))
 
 
 -- {{{ Error handling
