@@ -1,0 +1,1 @@
+Chose your widget and add it to the init. after that you can yuose it in the rc.lua
