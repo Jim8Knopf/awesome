@@ -1,27 +1,28 @@
 local awful = require('awful')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local defaultApp = require('config.apps')
 
 -- local icons = require('theme.icons')
 
 local tags = {
 	{
 		-- icon = '/home/jim/.config/awesome/widget/launcher-default/icons/gitlab-icon.svg',
-		name = "w",
+		name = 'terminal',
 		type = 'terminal',
 		defaultApp = 'kitty',
 		screen = 1
 	},
 	{
 		-- icon = icons.web_browser,
-		name = "w",
+		name = 'browser',
 		type = 'browser',
 		defaultApp = 'firefox',
 		screen = 1
 	},
 	{
 		-- icon = icons.text_editor,
-		name = "w",
+		name = 'code',
 		type = 'code',
 		defaultApp = 'subl3',
 		screen = 1
@@ -35,14 +36,14 @@ local tags = {
 	},
 	{
 		-- icon = icons.multimedia,
-		name = "w",
+		name = 'music',
 		type = 'music',
 		defaultApp = 'vlc',
 		screen = 1
 	},
 	{
 		-- icon = icons.development,
-		name = "w",
+		name = 'any',
 		type = 'any',
 		defaultApp = '',
 		screen = 1
@@ -76,24 +77,32 @@ local tags = {
 	},
 	{
 	--   icon = icons.social,
-		name = 'annything',
-	  	type = 'annything',
+		name = 'any',
+	  	type = 'any',
 	  	defaultApp = 'rofi',
 	  	screen = 2,
 	  	layout = awful.layout.suit.corner.se
 	},
 	{
 	--   icon = icons.social,
-		name = 'signal-desktop',
-	  	type = 'signal-desktop',
+		name = 'signal',
+	  	type = 'signal',
 	  	defaultApp = 'signal-desktop',
 	  	screen = 2,
 	  	layout = awful.layout.suit.corner.se
 	},
 	{
 	--   icon = icons.social,
-		name = 'telegram-desktop',
-	  	type = 'telegram-desktop',
+		name = 'thunderbird',
+	  	type = 'thunderbird',
+	  	defaultApp = 'thunderbird',
+	  	screen = 2,
+	  	layout = awful.layout.suit.corner.se
+	},
+	{
+	--   icon = icons.social,
+		name = 'telegram',
+	  	type = 'telegram',
 	  	defaultApp = 'telegram-desktop',
 	  	screen = 2,
 	  	layout = awful.layout.suit.corner.se
@@ -114,14 +123,15 @@ awful.screen.connect_for_each_screen(
 				awful.tag.add(
 					tag.type, 
 					{
-					icon 				= tag.icon,
-					icon_only 			= (tag.icon and true or false),
-					layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
-					gap_single_client	= false,
-					gap 				= 4,
-					screen 				= msc,
-					defaultApp 			= tag.defaultApp,
-					selected 			= selected[msc]
+						name				= tag.name,
+						icon 				= tag.icon,
+						icon_only 			= (tag.icon and true or false),
+						layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
+						gap_single_client	= false,
+						gap 				= 4,
+						screen 				= msc,
+						defaultApp 			= tag.defaultApp,
+						selected 			= selected[msc]
 					}
 				)
 			end

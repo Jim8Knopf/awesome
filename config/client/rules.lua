@@ -2,23 +2,35 @@ local awful = require('awful')
 local gears = require('gears')
 -- local ruled = require("ruled")
 local beautiful = require('beautiful')
+-- local tags = require('config').tags
 
 local clientKeys = require('config.client.keys')
--- local client_buttons = require('config.client.buttons')
+-- local clientButtons = require('config.client.buttons')
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientKeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+      properties = { 
+		border_width 			= beautiful.border_width,
+        border_color 			= beautiful.border_normal,
+        focus 					= awful.client.focus.filter,
+        raise 					= true,
+        keys 					= clientKeys,
+        buttons 				= clientButtons,
+        screen 					= awful.screen.preferred,
+		placement 				= awful.placement.no_overlap+awful.placement.no_offscreen,
+		floating 				= false,
+		maximized 				= false,
+		above 					= false,
+		below 					= false,
+		ontop 					= false,
+		sticky 					= false,
+		maximized_horizontal	= false,
+		maximized_vertical 		= false,
+		round_corners 			= true,
+		placement 				= awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
 
@@ -60,7 +72,79 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { instance = "vlc" },
-      properties = { screen = 1, tag = "2" } },
+	  properties = {tag = "thunderbird" } 
+	},
+	-- Discord
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord-ptb" },
+	  properties = {tag = "discord" } 
+	},
+	-- Telegram
+    { rule = { instance = "telegram-desktop" },
+	  properties = {tag = "telegram" } 
+	},
+	-- Thunderbird
+    { rule = { instance = "thunderbird" },
+	  properties = {tag = "thunderbird" } 
+	},
+	-- Signal
+    { rule = { instance = "signal-desktop" },
+	  properties = {tag = "signal" } 
+	},
+	-- Code
+    { rule = { instance = "code" },
+	  properties = {tag = "code" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
+    { rule = { instance = "discord" },
+	  properties = {tag = "discord" } 
+	},
 }
 -- }}}
 
