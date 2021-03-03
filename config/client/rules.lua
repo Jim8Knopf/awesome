@@ -2,23 +2,37 @@ local awful = require('awful')
 local gears = require('gears')
 -- local ruled = require("ruled")
 local beautiful = require('beautiful')
+-- local tags = require('config').tags
+local apps = require('config.apps')
 
 local clientKeys = require('config.client.keys')
--- local client_buttons = require('config.client.buttons')
+-- local clientButtons = require('config.client.buttons')
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientKeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+      properties = { 
+		border_width 			= beautiful.border_width,
+        border_color 			= beautiful.border_normal,
+        focus 					= awful.client.focus.filter,
+        raise 					= true,
+        keys 					= clientKeys,
+        buttons 				= clientButtons,
+        screen 					= awful.screen.preferred,
+		placement 				= awful.placement.no_overlap+awful.placement.no_offscreen,
+		floating 				= false,
+		maximized 				= false,
+		above 					= false,
+		below 					= false,
+		ontop 					= false,
+		sticky 					= false,
+		maximized_horizontal	= false,
+		maximized_vertical 		= false,
+		skip_taskbar			= false,
+		round_corners 			= true,
+		placement 				= awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
 
@@ -51,16 +65,71 @@ awful.rules.rules = {
           "ConfigManager",  -- Thunderbird's about:config.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-      }, properties = { floating = true }},
+	  }, 
+	  properties = { floating = true }
+	},
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { instance = "vlc" },
-      properties = { screen = 1, tag = "2" } },
+	
+
+	-- ╔═══╗               ╔═╗          ╔═══╗            
+	-- ║╔═╗║               ║╔╝          ║╔═╗║            
+	-- ║╚══╗╔══╗╔══╗╔══╗╔╗╔╝╚╗╔╗╔══╗    ║║ ║║╔══╗╔══╗╔══╗
+	-- ╚══╗║║╔╗║║╔╗║║╔═╝╠╣╚╗╔╝╠╣║╔═╝    ║╚═╝║║╔╗║║╔╗║║══╣
+	-- ║╚═╝║║╚╝║║╚═╗║╚═╗║║ ║║ ║║║╚═╗    ║╔═╗║║╚╝║║╚╝║╠══║
+	-- ╚═══╝║╔═╝╚══╝╚══╝╚╝ ╚╝ ╚╝╚══╝    ╚╝ ╚╝║╔═╝║╔═╝╚══╝
+	-- 	 	║║                               ║║  ║║      
+	-- 	 	╚╝                               ╚╝  ╚╝      
+
+	-- Discord
+    { rule = { instance = "discord" },
+	  properties = {
+		  tag = "discord",
+		  screen = _G.screen2
+		} 
+	},
+    { rule = { instance = "discord-ptb" },
+	  properties = {
+		  tag = "discord",
+		  screen = _G.screen2
+		} 
+	},
+	-- Telegram
+    { rule = { instance = "telegram-desktop" },
+	  properties = {
+		  tag = "telegram",
+		  screen = _G.screen2
+		} 
+	},
+	-- Thunderbird
+    { rule = { class = "Thunderbird" },
+	  properties = {
+		  tag = "thunderbird",
+		  screen = _G.screen2
+		} 
+	},
+	-- Signal
+    { rule = { instance = "signal" },
+	  properties = {
+		  tag = "signal",
+		  screen = _G.screen2
+		} 
+	},
+	-- Code
+    { rule = { instance = "code" },
+	  properties = {
+		  tag = "code",
+		  switchtotag = true
+		} 
+	},
+	-- browser
+    { rule = { instance = apps.default.browser },
+	  properties = {tag = "browser" } 
+	},
 }
 -- }}}
 

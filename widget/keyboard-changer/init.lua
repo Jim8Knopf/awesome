@@ -16,7 +16,8 @@ kbdcfg.switch = function ()
     os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
 end
 
- -- Mouse bindings ???
+ -- Mouse bindings 
+ -- this definse the mousbutton wich must be clicked to toggle the widget
 kbdcfg.widget:buttons(
     awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
 )

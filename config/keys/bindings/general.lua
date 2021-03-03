@@ -29,8 +29,14 @@ local general = awful.util.table.join(
     {description = "lua execute prompt", group = group}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(apps.default.terminal) end,
     {description = "open a terminal", group = group}),
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-    {description = "run prompt", group = group}),
+    awful.key(
+        { modkey },
+        "r",     
+        function () 
+            awful.spawn('rofi -combi-modi window,drun -show combi -modi combi')
+        end,
+        {description = "run prompt", group = group}
+    ),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = group}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,

@@ -4,9 +4,9 @@ local apps = require('config.apps')
 local widget = require("widget")
 
 require('config.layouts')
+require("config.tags")
 require("config.client")
 require('module.auto-start')
-require("config.tags")
 require('layout')
 
 
