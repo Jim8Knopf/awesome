@@ -128,7 +128,10 @@ awful.rules.rules = {
 	},
 	-- browser
     { rule = { instance = apps.default.browser },
-	  properties = {tag = "browser" } 
+	  properties = {
+		  tag = "browser",
+		  screen = _G.screen1 
+		} 
 	},
 }
 -- }}}
