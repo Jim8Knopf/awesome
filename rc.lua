@@ -7,7 +7,7 @@ require('config.layouts')
 require("config.tags")
 require("config.client")
 require('module.auto-start')
-require('layout')
+-- require('layout')
 
 
 -- If LuaRocks is installed, make sure that packages installed through it are
@@ -22,6 +22,15 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+-- Variable definitions
+local themes = {
+    "default",      -- 1
+    "darkblue"      -- 2
+}
+-- Choose the theme
+local chosen_theme = themes[1]
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+beautiful.init(theme_path)
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -34,16 +43,16 @@ _G.root.keys(require('config.keys.global'))
 
 
 -- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
+    -- Check if awesome encountered an error during startup and fell back to
+    -- another config (This code will only ever execute for the fallback config)
+    if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
                      text = awesome.startup_errors })
-end
+    end
 
--- Handle runtime errors after startup
-do
+    -- Handle runtime errors after startup
+    do
     local in_error = false
     awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
@@ -55,16 +64,16 @@ do
                          text = tostring(err) })
         in_error = false
     end)
-end
+    end
 -- }}}
 
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({ }, 3, function () widget.menu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
-))
+    root.buttons(gears.table.join(
+        awful.button({ }, 3, function () widget.menu:toggle() end),
+        awful.button({ }, 4, awful.tag.viewnext),
+        awful.button({ }, 5, awful.tag.viewprev)
+    ))
 -- }}}
 
 -- {{{ Signals

@@ -3,7 +3,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local defaultApp = require('config.apps')
 
-local icons = require('theme.icons')
+local icons = require('themes.icons')
 
 _G.screens = {1}
 -- checks if there are as many screens as I want to have.
