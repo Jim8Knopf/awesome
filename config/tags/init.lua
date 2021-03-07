@@ -3,7 +3,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local defaultApp = require('config.apps')
 
--- local icons = require('theme.icons')
+local icons = require('theme.icons')
 
 _G.screens = {1}
 -- checks if there are as many screens as I want to have.
@@ -13,14 +13,14 @@ _G.screens[2] = (screen:count() >= 2 and 2 or screen:count())
 
 local tags = {
 	{
-		-- icon = '/home/jim/.config/awesome/widget/launcher-default/icons/gitlab-icon.svg',
+		icon = icons.terminal,
 		name = 'terminal',
 		type = 'terminal',
 		defaultApp = 'kitty',
 		screen = _G.screens[1]
 	},
 	{
-		-- icon = icons.web_browser,
+		icon = icons.browser,
 		name = 'browser',
 		type = 'browser',
 		defaultApp = 'firefox',
@@ -58,7 +58,7 @@ local tags = {
 	-- Screan 2
 	--
 	{
-	--   icon = icons.social,
+	  	icon = icons.discord,
 		name = 'discord',
 	  	type = 'discord',
 	  	defaultApp = 'discord',
@@ -74,7 +74,7 @@ local tags = {
 	  	layout = awful.layout.suit.tile.bottom
 	},
 	{
-	--   icon = icons.social,
+	  	icon = icons.terminal,
 		name = 'terminal',
 	  	type = 'terminal',
 	  	defaultApp = defaultApp.terminal,
@@ -90,7 +90,7 @@ local tags = {
 	  	layout = awful.layout.suit.tile.bottom
 	},
 	{
-	--   icon = icons.social,
+	  	icon = icons.signal,
 		name = 'signal',
 	  	type = 'signal',
 	  	defaultApp = 'signal-desktop',
@@ -98,7 +98,7 @@ local tags = {
 	  	layout = awful.layout.suit.tile.bottom
 	},
 	{
-	--   icon = icons.social,
+	  	icon = icons.mail,
 		name = 'thunderbird',
 	  	type = 'thunderbird',
 	  	defaultApp = 'thunderbird',
@@ -106,7 +106,7 @@ local tags = {
 	  	layout = awful.layout.suit.tile.bottom
 	},
 	{
-	--   icon = icons.social,
+	  	icon = icons.telegram,
 		name = 'telegram',
 	  	type = 'telegram',
 	  	defaultApp = 'telegram-desktop',
@@ -125,23 +125,23 @@ awful.screen.connect_for_each_screen(
 			for i, tag in ipairs(tags) do
 				-- checks on wich screen wich tag has to go
 				if tag.screen then -- ???
-				if s == screen[tag.screen] then
-					awful.tag.add(
-						tag.type, 
-						{
-							name				= tag.name,
-							icon 				= tag.icon,
-							icon_only 			= (tag.icon and true or false),
-							layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
-							gap_single_client	= false,
-							gap 				= 4,
-							screen 				= tag.screen,
-							defaultApp 			= tag.defaultApp,
-							selected 			= selected[tag.screen]
-						}
-					)
-				end
-				selected[tag.screen] = false
+					if s == screen[tag.screen] then
+						awful.tag.add(
+							tag.type, 
+							{
+								name				= tag.name,
+								icon 				= tag.icon,
+								icon_only 			= (tag.icon and true or false),
+								layout 				= (tag.layout and tag.layout or awful.layout.layouts[1]), -- tenaer operator (x?a:b)
+								gap_single_client	= false,
+								gap 				= 4,
+								screen 				= tag.screen,
+								defaultApp 			= tag.defaultApp,
+								selected 			= selected[tag.screen]
+							}
+						)
+					end
+					selected[tag.screen] = false
 				end
 			end
 		else

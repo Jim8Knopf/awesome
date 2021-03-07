@@ -1,5 +1,6 @@
 local awful = require('awful')
 require('awful.autofocus')
+local hotkeys_popup = require('awful.hotkeys_popup').widget
 
 local modkey = require('config.keys.mod').modKey
 local altkey = require('config.keys.mod').altKey
@@ -96,7 +97,8 @@ local programs = awful.util.table.join(
       'm',
       function()
         awful.util.spawn_with_shell('mate-system-monitor')
-      end
+      end,
+      {description = 'Opens mate system monitoring', group = group}
     ),
     -- Emoji Picker
     awful.key(
@@ -105,7 +107,7 @@ local programs = awful.util.table.join(
       function()
         awful.util.spawn_with_shell('ibus emoji')
       end,
-      {description = 'Open the ibus emoji picker to copy an emoji to your clipboard', group = 'hotkeys'}
+      {description = 'Open the ibus emoji picker to copy an emoji to your clipboard', group = group}
     )
 )
 return programs

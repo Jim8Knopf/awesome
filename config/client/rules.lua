@@ -89,34 +89,34 @@ awful.rules.rules = {
     { rule = { instance = "discord" },
 	  properties = {
 		  tag = "discord",
-		  screen = _G.screen2
+		  screen = _G.screens[2]
 		} 
 	},
     { rule = { instance = "discord-ptb" },
 	  properties = {
 		  tag = "discord",
-		  screen = _G.screen2
+		  screen = _G.screens[2]
 		} 
 	},
 	-- Telegram
     { rule = { instance = "telegram-desktop" },
 	  properties = {
 		  tag = "telegram",
-		  screen = _G.screen2
+		  screen = _G.screens[2]
 		} 
 	},
 	-- Thunderbird
     { rule = { class = "Thunderbird" },
 	  properties = {
 		  tag = "thunderbird",
-		  screen = _G.screen2
+		  screen = _G.screens[2]
 		} 
 	},
 	-- Signal
     { rule = { instance = "signal" },
 	  properties = {
 		  tag = "signal",
-		  screen = _G.screen2
+		  screen = _G.screens[2]
 		} 
 	},
 	-- Code
@@ -130,7 +130,7 @@ awful.rules.rules = {
     { rule = { instance = apps.default.browser },
 	  properties = {
 		  tag = "browser",
-		  screen = _G.screen1 
+		  screen = _G.screens[1] 
 		} 
 	},
 }

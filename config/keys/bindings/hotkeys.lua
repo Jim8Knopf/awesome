@@ -9,7 +9,7 @@ local group = "hotkeys"
 
 -- Layout related keybindings
 
-local layout = awful.util.table.join(
+local hotkeys = awful.util.table.join(
     
   -- Brightness
   awful.key(
@@ -33,7 +33,7 @@ local layout = awful.util.table.join(
     {},
     'XF86AudioRaiseVolume',
     function()
-      awful.spawn('amixer -D pulse sset Master 5%+')
+      awful.spawn('amixer -D pulse sset Master 1%+')
     end,
     {description = 'volume up', group = group}
   ),
@@ -41,7 +41,7 @@ local layout = awful.util.table.join(
     {},
     'XF86AudioLowerVolume',
     function()
-      awful.spawn('amixer -D pulse sset Master 5%-')
+      awful.spawn('amixer -D pulse sset Master 1%-')
     end,
     {description = 'volume down', group = group}
   ),
@@ -76,7 +76,23 @@ local layout = awful.util.table.join(
       _G.exit_screen_show()
     end,
     {description = 'toggle mute', group = group}
+  ),
+  awful.key(
+    {altkey},
+    'Left',
+    function()
+      awful.util.spawn_with_shell("variety -p")
+    end,
+    {description = 'previous background', group = group}
+  ),
+  awful.key(
+    {altkey},
+    'Right',
+    function()
+      awful.util.spawn_with_shell("variety -n")
+    end,
+    {description = 'next background', group = group}
   )
 )
     
-return layout
+return hotkeys
