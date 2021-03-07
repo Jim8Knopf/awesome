@@ -93,6 +93,6 @@ local hotkeys = awful.util.table.join(
     end,
     {description = 'next background', group = group}
   )
-)
+) 
     
 return hotkeys
