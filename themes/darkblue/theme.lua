@@ -4,6 +4,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 local os, math, string = os, math, string
 
+require('themes.default.layout')
+
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/darkblue"
 theme.wallpaper                                 = theme.dir .. "/wallpapers/wall_0.png"

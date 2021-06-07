@@ -28,8 +28,8 @@ local themes = {
     "darkblue"      -- 2
 }
 -- Choose the theme
-local chosen_theme = themes[1]
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+local theme_num = 1
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), themes[theme_num])
 beautiful.init(theme_path)
 -- Notification library
 local naughty = require("naughty")

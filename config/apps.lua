@@ -24,6 +24,8 @@ return {
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
+    'telegram-desktop',
+    'signal-desktop',
     -- 'compton --config ' .. filesystem.get_configuration_dir() .. '/configuration/compton.conf',
     'nm-applet --indicator', -- wifi
     'pa-applet', -- shows an audiocontrol applet in systray when installed.
@@ -33,12 +35,15 @@ return {
     -- 'scream -u -p 4011 -i virbr1', -- scream audio sink
     'numlock on', -- enable numlock
     'feh --randomize --bg-fill ~/.wallpapers/*',
-    -- '/usr/bin/variety',    <-- mayby turn it on again
+    '/usr/bin/variety',    --<-- mayby turn it on again
+    'kdeconnect-app',
+    -- 'echo keepassMasterPassword | keepassxc --pw-stdin ~/.config/.kp/Passwords.kdbx',
+    'gnome-keyring-query get keepass | keepassxc --pw-stdin ~/.config/.kp/Passwords.kdbx',
 
     -- '/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
-    --KDE '/usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
+    -- KDE '/usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
     -- MATE'/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
-    -- 'flameshot',
+    'flameshot',
     --  'synology-drive -minimized',
     --  'steam -silent',
     --  'telegram-desktop',
